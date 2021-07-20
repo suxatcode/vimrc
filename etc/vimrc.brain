@@ -1,0 +1,35 @@
+" brain files
+nmap <space>e "ayi':<C-r>a<CR>lh
+
+" TODO:
+"fu! ExecInBackground(...)
+"  let cmd = "!".join(a:000, " ")." &"
+"  exec 'echoerr "'.cmd.'"'
+"  exec cmd
+"endfu
+
+fu! OpenPdf(...)
+  "call ExecInBackground(["evince"] + a:000)
+  exec "!evince ".join(a:000, " ")." &"
+endfu
+com! -nargs=* Pdf call OpenPdf(<f-args>)
+
+fu! OpenImage(...)
+  "call ExecInBackground(["eog"] + a:000)
+  exec "!eog ".join(a:000, " ")." &"
+endfu
+com! -nargs=* Img call OpenImage(<f-args>)
+
+fu! TabTmpReadCmd(...)
+  exec "normal :tabe\<CR>"
+  nmap <buffer> q :q!<CR>
+  exec "normal :r !".join(a:000, " ")."\<CR>"
+  normal ggdd
+  exec "TabooRename ".a:1
+endfu
+com! -nargs=* TabTmp call TabTmpReadCmd(<f-args>)
+
+fu! BrainContent()
+  r !grep '^\(===\|[A-Z][A-Z0-9 ]*\*\)' %
+endfu
+com! -nargs=0 Content call BrainContent()
