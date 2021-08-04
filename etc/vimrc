@@ -8,6 +8,8 @@ set is hls ic sc ai nowrap
 set ts=2 sts=2 sw=2 et sr
 set clipboard=unnamedplus mouse=nvi
 set wildmenu so=0 secure
+" blank,buffers, vv
+set ssop=curdir,folds,help,tabpages,winsize,terminal,globals
 
 nmap <space>q :q<CR>
 nmap <space>w :w<CR>
@@ -23,7 +25,7 @@ nmap <space>9 :tabn 9<CR>
 nmap <space>0 :tabn 10<CR>
 
 nmap <C-n> :nohl<CR>
-nmap * "ayiwk/<C-r>a<CR>
+nmap * "ayiwk/\<<C-r>a\><CR>
 vmap * "ayk/<C-r>a<CR>
 map! <C-v> <C-r>+
 nmap gn :cnext<CR>

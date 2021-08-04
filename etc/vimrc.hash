@@ -1,5 +1,5 @@
 fu! HashStrToClipboard(inp)
-  let @+ = HashStr(a:inp) " TODO: check &clipboard
+  let @" = HashStr(a:inp) " TODO: check &clipboard
 endfu
 fu! HashStr(inp)
   py3 << EOF
