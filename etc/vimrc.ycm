@@ -1,0 +1,22 @@
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_enable_diagnostic_highlighting = 0
+
+nmap <buffer> <Space>f :YcmCompleter FixIt<CR>
+nmap <buffer> <Space>r :YcmRestartServer<CR>
+
+fu! _UseYcmGD()
+  nmap <buffer> gd :YcmCompleter GoToDefinition<CR>
+  nmap <buffer> gu :YcmCompleter GoToDeclaration<CR>
+  nmap <buffer> gU :YcmCompleter GoTo<CR>
+endfu
+com! -nargs=0 UseYcmGD call _UseYcmGD()
+
+com! DisableYCM call DisableYCM()
+fu! DisableYCM()
+  let cnf = ".ycm_extra_conf.py"
+  let pyraise = 'raise Exception("Disabled")'
+  call system("[ -f ".cnf." ] && cp ".cnf." ".cnf.".bak")
+  call system("echo '".pyraise."' >> ".cnf)
+  YcmRestartServer
+endfu
