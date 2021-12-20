@@ -6,31 +6,47 @@ syntax on
 
 set is hls ic sc ai nowrap
 set ts=2 sts=2 sw=2 et sr
-set clipboard=unnamedplus mouse=nvi
 set wildmenu so=0 secure
 " blank,buffers, vv
 set ssop=curdir,folds,help,tabpages,winsize,terminal,globals
 
-nmap <space>q :q<CR>
-nmap <space>w :w<CR>
-nmap <space>1 :tabn 1<CR>
-nmap <space>2 :tabn 2<CR>
-nmap <space>3 :tabn 3<CR>
-nmap <space>4 :tabn 4<CR>
-nmap <space>5 :tabn 5<CR>
-nmap <space>6 :tabn 6<CR>
-nmap <space>7 :tabn 7<CR>
-nmap <space>8 :tabn 8<CR>
-nmap <space>9 :tabn 9<CR>
-nmap <space>0 :tabn 10<CR>
+" clipboard
+map! <C-v> <C-r>+
+set clipboard=unnamedplus mouse=nvi
 
+" mouse
+if has('mouse')
+  set mouse=a
+  map <MiddleMouse> <C-W>gf
+  map <C-MiddleMouse> :q<CR>
+  map <space><MiddleMouse> :q!<CR>
+  map c<LeftMouse> <C-w><C-]>
+endif
+
+" navigation & misc
+nmap <space>w :w<CR><C-l>
+nmap <space>q :q<CR>
+nmap <space>Q :q!<CR>
+nmap <space>t :checktime<CR>
+for i in range(1,9) | exe "nmap <space>".i." ".i."gt" | endfor
+nmap <space>0 10gt
+nmap <space>- 11gt
+nmap <space>= 12gt
 nmap <C-n> :nohl<CR>
+nmap zh zH
+nmap zl zL
+
+" searching
 nmap * "ayiwk/\<<C-r>a\><CR>
 vmap * "ayk/<C-r>a<CR>
-map! <C-v> <C-r>+
-nmap gn :cnext<CR>
+
+" tags & grep
 nmap tn :tnext<CR>
 nmap ts :tselect<CR>
+nmap gn :cnext<CR>
+nmap gs :clist<CR>
+
+" man
 nmap K "ayiw:Man <C-r>a<CR>
 fu! UnixManual(which)
     exe "normal :tabe\<CR>:r !man ".a:which."\<CR>ggdd"
@@ -40,3 +56,9 @@ endfu
 com! -nargs=1 -complete=shellcmd Man call UnixManual(<f-args>)
 
 com! -nargs=* Grep :grep -rI <args>
+
+com! -nargs=0 Chop exe "normal maHmb" | %s/\s*$//g | exe "normal `bzt`a\<C-n>"
+
+" vim evaluation of ''-commands
+nmap <space>e yi':<C-v><CR>lh
+
