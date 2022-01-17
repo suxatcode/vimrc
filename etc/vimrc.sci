@@ -4,22 +4,43 @@ fu! UseAtSyms()
   " 'Lnk physics/lang.physics #h-bar'
   map! @h ℏ
   map! @I ∫
+  map! @II ∬
+  map! @III ∭
   map! @N ∇
+
   map! @n ¬
   map! @a ∧
   map! @E ∃
+  map! @!E ∄
   map! @A ∀
   map! @e ∈
+  map! @ne ∉
+
+  map! @S ∑
+  map! @P ∏
+  map! @r √
+
+  map! @{R} ℝ
+  map! @{C} ℂ
+
+  map! @un ∪
+  map! @in ∩
+  map! @c ⊂
+  map! @c= ⊆
+  map! @oo ∞
+  map! @<< ≪
+  map! @>> ≫
+  
+  map! @p ∂
+  map! @pm ±
+  map! @qed ∎
+  map! @dots ⋯
+  " complex conjugate
+  map! @c  ̅
+  
   "map! @| ‖ " does not work |-(
   "@v for _V_ector-norm
   map! @v ‖
-  "let @v = "s‖\x1b"
-  "let @h = "sℏ\x1b"
-  "let @i = "s∫\x1b"
-  "let @n = "s¬\x1b"
-  "let @e = "s∃\x1b"
-  "let @a = "s∀\x1b"
-  "let @e = "s∈\x1b"
 endfu
 com -nargs=0 UseAtSyms call UseAtSyms()
 " vim:ft=vim
