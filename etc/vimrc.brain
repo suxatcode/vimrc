@@ -109,3 +109,18 @@ fu! BrainSrc(file)
   exec 'source '.target
 endf
 com! -nargs=1 Src tabe | call BrainSrc(<f-args>)
+
+let g:brain_session_dir = join([$HOME, '0x/vim'], '/')
+fu! _Mkbrain(file)
+  exec 'mksess! ' . join([g:brain_session_dir, a:file], '/')
+endfu
+fu! _MkbrainComplete(prefix, ...)
+  let all = split(system('ls ' . g:brain_session_dir), '\n')
+  let filtered = filter(all, 'v:val =~ "^'.a:prefix.'"')
+  return filtered
+  "return sort(filtered, '_MkbrainSortSmallestFirst')
+endfu
+"fu! _MkbrainSortSmallestFirst(i1, i2)
+"  return len(a:i1) > len(a:i2)
+"endfu
+com! -nargs=1 -complete=customlist,_MkbrainComplete Mkbrain call _Mkbrain(<f-args>)

@@ -16,6 +16,19 @@ fu! UseAtSyms()
   map! @e ∈
   map! @ne ∉
 
+  map! @=> ⇒
+  map! @<= ⇐
+  map! @<=> ⇔
+  map! @^=v ⇕
+  map! @v=^ ⇕
+  map! @-> →
+  map! @<- ←
+  map! @<-> ↔
+  map! @<-/ ↤
+  map! @/-^ ↥
+  map! @/-> ↦
+  map! @!! ↯
+
   map! @S ∑
   map! @P ∏
   map! @r √
@@ -30,6 +43,7 @@ fu! UseAtSyms()
   map! @oo ∞
   map! @<< ≪
   map! @>> ≫
+  map! @pr ∝
   
   map! @p ∂
   map! @pm ±
