@@ -111,8 +111,20 @@ endf
 com! -nargs=1 Src tabe | call BrainSrc(<f-args>)
 
 let g:brain_session_dir = join([$HOME, '0x/vim'], '/')
-fu! _Mkbrain(file)
-  exec 'mksess! ' . join([g:brain_session_dir, a:file], '/')
+fu! _Mkbrain(...)
+  let file = ""
+  if a:0 == 1
+    let file = a:1
+  endif
+  let session = join([g:brain_session_dir, file], '/')
+  if file == ""
+    let session = v:this_session
+  endif
+  if session == ""
+    echoerr "empty default session! either name a session or use `mksess` yourself"
+    return 1
+  endif
+  exec 'mksess! ' . session
 endfu
 fu! _MkbrainComplete(prefix, ...)
   let all = split(system('ls ' . g:brain_session_dir), '\n')
@@ -123,4 +135,4 @@ endfu
 "fu! _MkbrainSortSmallestFirst(i1, i2)
 "  return len(a:i1) > len(a:i2)
 "endfu
-com! -nargs=1 -complete=customlist,_MkbrainComplete Mkbrain call _Mkbrain(<f-args>)
+com! -nargs=? -complete=customlist,_MkbrainComplete Mkbrain call _Mkbrain(<f-args>)
