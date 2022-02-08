@@ -16,17 +16,17 @@ fu! UseAtSyms()
   map! @e ∈
   map! @ne ∉
 
-  map! @=> ⇒
-  map! @<= ⇐
-  map! @<=> ⇔
-  map! @^=v ⇕
-  map! @v=^ ⇕
-  map! @-> →
-  map! @<- ←
-  map! @<-> ↔
-  map! @<-/ ↤
-  map! @/-^ ↥
-  map! @/-> ↦
+  "map! @=> ⇒
+  "map! @<= ⇐
+  "map! @<=> ⇔
+  "map! @^=v ⇕
+  "map! @v=^ ⇕
+  "map! @-> →
+  "map! @<- ←
+  "map! @<-> ↔
+  "map! @<-/ ↤
+  "map! @/-^ ↥
+  "map! @/-> ↦
   map! @!! ↯
 
   map! @S ∑
@@ -41,14 +41,14 @@ fu! UseAtSyms()
   map! @c ⊂
   map! @c= ⊆
   map! @oo ∞
-  map! @<< ≪
-  map! @>> ≫
+  "map! @<< ≪
+  "map! @>> ≫
   map! @pr ∝
   
   map! @p ∂
   map! @pm ±
   map! @qed ∎
-  map! @dots ⋯
+  map! @... ⋯
   " complex conjugate
   map! @c  ̅
   
