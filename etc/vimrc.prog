@@ -11,6 +11,8 @@ fu! InitGo()
   nmap <buffer> <F5> :w<CR>:!go test<CR>
   nmap <buffer> <F3> :w<CR>:!go run %<CR>
   nmap <buffer> == :!cd %:h && go fmt<CR>
+  nmap <buffer> gd :YcmCompleter GoToDeclaration<CR>
+  nmap <buffer> gu :YcmCompleter GoToReferences<CR>
 endfu
 au BufRead,BufNewFile *.go call InitGo()
 
