@@ -13,6 +13,7 @@ fu! InitGo()
   nmap <buffer> == :!cd %:h && go fmt<CR>
   nmap <buffer> gd :YcmCompleter GoToDeclaration<CR>
   nmap <buffer> gu :YcmCompleter GoToReferences<CR>
+  nmap <buffer> <space>u :!cd %:h && go test<CR>
 endfu
 au BufRead,BufNewFile *.go call InitGo()
 

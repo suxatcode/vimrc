@@ -50,6 +50,7 @@ fu! BrainTabTmpReadCmd(...)
 endfu
 com! -nargs=* TabTmp call BrainTabTmpReadCmd(<f-args>)
 
+" show sections & headlines
 fu! BrainGrepHelpContent_(...)
   let verbose = 0
   let exe_init = "normal o\<ESC>mt"
@@ -64,11 +65,13 @@ fu! BrainGrepHelpContent_(...)
   exe exe_str
   exe exe_finalize
 endfu
-
 com! -nargs=? GrepHelpContent :call BrainGrepHelpContent_(<f-args>)
 com! -nargs=0 Content :call BrainGrepHelpContent_(1)
 com! -nargs=0 ContentVerbose :call BrainGrepHelpContent_(2)
 com! -nargs=0 ContentShort :call BrainGrepHelpContent_()
+
+" search through whole brain
+com! -nargs=* GrepBrain :grep -I --exclude='*~' --exclude='*.swp' <args> $(find $BRAIN_DIR_LIST_HOME_REL   -name '*.lang' -or -name 'lang.*')
 
 " linking to files
 fu! BrainGotoHeadl(hdl)

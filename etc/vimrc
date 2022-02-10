@@ -55,7 +55,7 @@ fu! UnixManual(which)
 endfu
 com! -nargs=1 -complete=shellcmd Man call UnixManual(<f-args>)
 
-com! -nargs=* Grep :grep -rI <args>
+com! -nargs=* -complete=dir Grep :grep -rI <args> --exclude=tags --exclude='*~' --exclude='*.swp' --exclude-dir=.git --exclude-dir=node_modules --exclude-dir='venv*'
 
 com! -nargs=0 Chop exe "normal maHmb" | %s/\s*$//g | exe "normal `bzt`a\<C-n>"
 
