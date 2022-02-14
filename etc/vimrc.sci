@@ -10,6 +10,7 @@ fu! UseAtSyms()
 
   map! @n ¬
   map! @a ∧
+  map! @o ∨
   map! @E ∃
   map! @!E ∄
   map! @A ∀
@@ -35,12 +36,13 @@ fu! UseAtSyms()
 
   map! @{R} ℝ
   map! @{C} ℂ
+  map! @{0} ∅
 
   map! @un ∪
   map! @in ∩
   map! @c ⊂
   map! @c= ⊆
-  map! @oo ∞
+  map! @inf ∞
   "map! @<< ≪
   "map! @>> ≫
   map! @pr ∝
@@ -50,7 +52,7 @@ fu! UseAtSyms()
   map! @qed ∎
   map! @... ⋯
   " complex conjugate
-  map! @c  ̅
+  map! @cj  ̅
   
   "map! @| ‖ " does not work |-(
   "@v for _V_ector-norm

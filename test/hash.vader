@@ -1,0 +1,4 @@
+Execute (source vimrc.hash):
+  source ./etc/vimrc.hash
+Execute (check hash 'abc'):
+  AssertEqual HashStr('abc'), 'rPwpcOCWTffBFMC9fX11BGAay'
