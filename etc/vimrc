@@ -4,7 +4,7 @@ runtime! debian.vim
 set nocompatible
 syntax on
 
-set is hls ic sc ai nowrap
+set is hls ic sc scs ai nowrap
 set ts=2 sts=2 sw=2 et sr
 set wildmenu so=0 secure
 " blank,buffers, vv

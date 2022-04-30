@@ -1,0 +1,22 @@
+fu! GithubLink()
+    let commit = trim(system('git rev-parse HEAD'))
+    let rel_file = expand('%')
+    if stridx(rel_file, $PWD.'/') != -1
+            let rel_file = split(rel_file, $PWD.'/')[0]
+    endif
+    let remote = system("git remote get-url $(git remote)")
+    let url = remote
+    if remote =~ '\([a-z]*\)@\([a-z.-]*\):\([a-z0-9.-]*\)'
+      let url = substitute(remote, '\([a-z]*\)@\([a-z.-]*\):\([a-z0-9.-]*\)', 'https://\2/\3', 'g')
+      let url = trim(url)
+      if url =~ '\.git$'
+        let url = url[:-5]
+      endif
+    endif
+    let link = url . "/blob/" . commit . "/" . rel_file
+    return link
+endfu
+fu! AssignGithuLinkClipboard()
+    let @+ = GithubLink()
+endfu
+nmap <space>y :call AssignGithuLinkClipboard()<CR>
