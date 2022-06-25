@@ -54,9 +54,11 @@ fu! UseAtSyms()
   " complex conjugate
   map! @cj  ̅
   
-  "map! @| ‖ " does not work |-(
-  "@v for _V_ector-norm
-  map! @v ‖
+  "@vn for _V_ector-_N_orm
+  map! @vn ‖
+  map! @v ⃗
+  nmap @v a@v <ESC>x
+  map! @perp ⊥
 endfu
 com -nargs=0 UseAtSyms call UseAtSyms()
 " vim:ft=vim
