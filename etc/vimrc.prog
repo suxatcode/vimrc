@@ -6,16 +6,25 @@ fu! InitMake()
 endfu
 au BufRead,BufNewFile Makefile,*.mk call InitMake()
 
+fu! YcmBindings()
+  nmap <buffer> gd :YcmCompleter GoToDeclaration<CR>
+  nmap <buffer> gu :YcmCompleter GoToReferences<CR>
+endfu
+
 fu! InitGo()
   setl ts=4 sts=4 sw=4
   nmap <buffer> <F5> :w<CR>:!go test<CR>
   nmap <buffer> <F3> :w<CR>:!go run %<CR>
   nmap <buffer> == :!cd %:h && go fmt<CR>
-  nmap <buffer> gd :YcmCompleter GoToDeclaration<CR>
-  nmap <buffer> gu :YcmCompleter GoToReferences<CR>
   nmap <buffer> <space>u :!cd %:h && go test<CR>
+  call YcmBindings()
 endfu
 au BufRead,BufNewFile *.go call InitGo()
+
+fu! InitCxxOrCuda()
+  call YcmBindings()
+endfu
+au BufRead,BufNewFile *.c,*.h,*.cpp,*.cxx,*.hxx,*.cc,*.cu call InitCxxOrCuda()
 
 " --- testing ---
 fu! InitJava()
@@ -36,3 +45,8 @@ fu! InitKt()
   nmap <buffer> <F3> :w<CR>:!java -jar %:t:r.jar<CR>
 endfu
 au BufRead,BufNewFile *.kt call InitKt()
+
+fu! InitJavascript()
+  nmap <buffer> == :!yarn fmt<CR>
+endfu
+au BufRead,BufNewFile *.js,*.ts,*.tsx,*.jsx call InitJavascript()
