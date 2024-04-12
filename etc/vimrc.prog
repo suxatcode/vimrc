@@ -7,6 +7,7 @@ endfu
 au BufRead,BufNewFile Makefile,*.mk call InitMake()
 
 fu! YcmBindings()
+  nmap <buffer> <C-]> :YcmCompleter GoTo<CR>
   nmap <buffer> gd :YcmCompleter GoToDeclaration<CR>
   nmap <buffer> gu :YcmCompleter GoToReferences<CR>
 endfu
@@ -20,6 +21,17 @@ fu! InitGo()
   call YcmBindings()
 endfu
 au BufRead,BufNewFile *.go call InitGo()
+
+fu! InitRust()
+  call YcmBindings()
+endfu
+au BufRead,BufNewFile *.rs call InitRust()
+
+fu! InitPy()
+  setl ts=4 sts=4 sw=4 et
+  call YcmBindings()
+endfu
+au BufRead,BufNewFile *.py call InitPy()
 
 fu! InitCxxOrCuda()
   call YcmBindings()
@@ -47,6 +59,11 @@ endfu
 au BufRead,BufNewFile *.kt call InitKt()
 
 fu! InitJavascript()
-  nmap <buffer> == :!yarn fmt<CR>
+  nmap <buffer> == :!yarn run prettier --write %<CR>
 endfu
 au BufRead,BufNewFile *.js,*.ts,*.tsx,*.jsx call InitJavascript()
+
+fu! InitMatlab()
+  nmap <buffer> <F3> :w<CR>:!matlab -nosplash -nodesktop -batch "run('%');"<CR>
+endfu
+au BufRead,BufNewFile *.m call InitMatlab()

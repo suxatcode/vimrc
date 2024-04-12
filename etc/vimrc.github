@@ -1,8 +1,9 @@
 fu! GithubLink()
     let commit = trim(system('git rev-parse HEAD'))
-    let rel_file = expand('%')
-    if stridx(rel_file, $PWD.'/') != -1
-            let rel_file = split(rel_file, $PWD.'/')[0]
+    let cwd_rel_file = expand('%')
+    let repo_file = trim(system("git ls-files --full-name " . cwd_rel_file))
+    if stridx(repo_file, $PWD.'/') != -1
+            let repo_file = split(repo_file, $PWD.'/')[0]
     endif
     let remote = system("git remote get-url $(git remote)")
     let url = remote
@@ -13,7 +14,8 @@ fu! GithubLink()
         let url = url[:-5]
       endif
     endif
-    let link = url . "/blob/" . commit . "/" . rel_file
+    let cur_line = line('.')
+    let link = url . "/blob/" . commit . "/" . repo_file . "#L" . cur_line
     return link
 endfu
 fu! AssignGithuLinkClipboard()
