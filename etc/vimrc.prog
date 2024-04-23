@@ -10,6 +10,9 @@ fu! YcmBindings()
   nmap <buffer> <C-]> :YcmCompleter GoTo<CR>
   nmap <buffer> gd :YcmCompleter GoToDeclaration<CR>
   nmap <buffer> gu :YcmCompleter GoToReferences<CR>
+  nmap <buffer> <space>. :YcmCompleter GetType<CR>
+  nmap <buffer> <Space>f :YcmCompleter FixIt<CR>
+  nmap <buffer> <Space>r :YcmRestartServer<CR>
 endfu
 
 fu! InitGo()

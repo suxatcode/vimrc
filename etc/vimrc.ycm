@@ -13,18 +13,6 @@ let g:ycm_complete_in_comments = 1
 let g:ycm_warning_symbol = '! '
 let g:ycm_error_symbol = '> '
 
-nmap <Space>f :YcmCompleter FixIt<CR>
-nmap <Space>r :YcmRestartServer<CR>
-
-
-fu! _UseYcmGD()
-  nmap <buffer> gd :YcmCompleter GoToDefinition<CR>
-  nmap <buffer> gu :YcmCompleter GoToDeclaration<CR>
-  nmap <buffer> gU :YcmCompleter GoTo<CR>
-  "nmap <buffer> <F2> :YcmCompleter RefactorRename<CR>      // needs argument :(
-endfu
-com! -nargs=0 UseYcmGD call _UseYcmGD()
-
 com! DisableYCM call DisableYCM()
 fu! DisableYCM()
   let cnf = ".ycm_extra_conf.py"
